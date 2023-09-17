@@ -21,7 +21,7 @@ public class ClientImpl implements Client {
 
             PrintWriter writeToServer = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())));
 
-            System.out.println("print your nickname: ");
+            System.out.println("print your nickname for authorization: ");
             String nicknameOfClient = readerFromClient.readLine();
             writeToServer.write("!auto!" + nicknameOfClient + "\n");
             writeToServer.flush();
