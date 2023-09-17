@@ -26,7 +26,7 @@ public class ClientImpl implements Client {
             writeToServer.write("!auto!" + nicknameOfClient + "\n");
             writeToServer.flush();
 
-            new Thread(new SocketRunnable(socket)).start();
+            new Thread(new ReadAndWriteMessageFromServer(socket)).start();
 
             System.out.println("print your message: ");
             String exit = "!Exit";
