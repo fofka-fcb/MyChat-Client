@@ -17,14 +17,26 @@ public class ClientImpl implements Client {
         if (socket.isConnected()) {
             System.out.println("connection to server is done");
 
+
             BufferedReader readerFromClient = new BufferedReader(new InputStreamReader(System.in));
 
             PrintWriter writeToServer = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())));
 
             System.out.println("print your nickname for authorization: ");
-            String nicknameOfClient = readerFromClient.readLine();
-            writeToServer.write("!auto!" + nicknameOfClient + "\n");
-            writeToServer.flush();
+
+            while (true) {
+                String nicknameOfClient = readerFromClient.readLine();
+                writeToServer.write("!auto!" + nicknameOfClient + "\n");
+                writeToServer.flush();
+
+                BufferedReader readerFromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                String messageFromServer = readerFromServer.readLine();
+                String autoIsTrue = "Log in again";
+                System.out.println(messageFromServer);
+                if (autoIsTrue.equals(messageFromServer) != true) {
+                    break;
+                }
+            }
 
             new Thread(new ReadAndWriteMessageFromServer(socket)).start();
 
@@ -32,7 +44,7 @@ public class ClientImpl implements Client {
             String exit = "!Exit";
             while (true) {
                 String messageToServer = readerFromClient.readLine();
-                if (messageToServer.equals(exit)){
+                if (messageToServer.equals(exit)) {
                     socket.close();
                     break;
                 }
