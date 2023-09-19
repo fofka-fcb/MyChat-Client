@@ -10,13 +10,10 @@ import java.net.Socket;
 @RequiredArgsConstructor
 public class ReadAndWriteMessageFromServer implements Runnable {
     private final Socket socket;
-//    private final ClientImpl client;
 
     @SneakyThrows
     @Override
     public void run() {
-
-//        BufferedReader readerFromClient = new BufferedReader(new InputStreamReader());
 
         BufferedReader readerFromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
