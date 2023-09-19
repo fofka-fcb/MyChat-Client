@@ -22,18 +22,36 @@ public class ClientImpl implements Client {
 
             PrintWriter writeToServer = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())));
 
-            System.out.println("print your nickname for authorization: ");
 
+            // Логика для авторизации
+//            System.out.println("print your nickname for authorization: ");
+//            while (true) {
+//                String nicknameOfClient = readerFromClient.readLine();
+//                writeToServer.write("!auto!" + nicknameOfClient + "\n");
+//                writeToServer.flush();
+//
+//                BufferedReader readerFromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+//                String messageFromServer = readerFromServer.readLine();
+//                String autoIsTrue = "Log in again";
+//                System.out.println(messageFromServer);
+//                if (autoIsTrue.equals(messageFromServer) != true) {
+//                    break;
+//                }
+//            }
+
+
+            // Логика для регистрации
+            System.out.println("Print your nickname for registration");
             while (true) {
                 String nicknameOfClient = readerFromClient.readLine();
-                writeToServer.write("!auto!" + nicknameOfClient + "\n");
+                writeToServer.write("!reg!" + nicknameOfClient + "\n");
                 writeToServer.flush();
 
                 BufferedReader readerFromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 String messageFromServer = readerFromServer.readLine();
-                String autoIsTrue = "Log in again";
+                String regIsTrue = "Reg again";
                 System.out.println(messageFromServer);
-                if (autoIsTrue.equals(messageFromServer) != true) {
+                if (regIsTrue.equals(messageFromServer) != true){
                     break;
                 }
             }
