@@ -86,8 +86,8 @@ public class ClientImpl implements Client {
 
                 }
 
-                String qwe = "qwe";
-                if (menuNum.equals(qwe) == true) {
+                String chatMessage = readerFromServer.readLine();
+                if (chatMessage.startsWith("!chat!")) {
                     break;
                 }
             }
