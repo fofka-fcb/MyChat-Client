@@ -8,7 +8,7 @@ import java.io.InputStreamReader;
 import java.net.Socket;
 
 @RequiredArgsConstructor
-public class ReadAndWriteMessageFromServer implements Runnable {
+public class WriteMessage implements Runnable {
     private final Socket socket;
 
     @SneakyThrows
