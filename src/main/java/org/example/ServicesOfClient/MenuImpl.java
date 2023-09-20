@@ -7,12 +7,12 @@ import java.io.*;
 import java.net.Socket;
 
 @RequiredArgsConstructor
-public class MenuImpl implements Menu{
+public class MenuImpl implements Menu {
     private final Socket socket;
 
     @SneakyThrows
     @Override
-    public void startMenu(){
+    public void startMenu() {
 
         BufferedReader readerFromClient = new BufferedReader(new InputStreamReader(System.in));
 
