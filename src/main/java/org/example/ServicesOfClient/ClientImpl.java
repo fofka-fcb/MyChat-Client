@@ -75,15 +75,25 @@ public class ClientImpl implements Client {
                         String messageFromServer = readerFromServer.readLine();
                         System.out.println(messageFromServer);
 
-                        if (messageFromServer.startsWith("Log in again") != true){
+                        if (messageFromServer.startsWith("Log in again") != true) {
                             break;
                         }
                     }
                 } else if (selectNumOfMenu.startsWith("!reg!")) {
-
                     System.out.println("You select registration");
                     System.out.println("Print your nickname: ");
+                    while (true) {
+                        String nicknameOfClient = readerFromClient.readLine();
+                        writeToServer.println("!reg!" + nicknameOfClient);
+                        writeToServer.flush();
 
+                        String messageFromServer = readerFromServer.readLine();
+                        System.out.println(messageFromServer);
+
+                        if (messageFromServer.startsWith("Reg is not accepted") != true) {
+                            break;
+                        }
+                    }
                 }
 
                 String chatMessage = readerFromServer.readLine();
