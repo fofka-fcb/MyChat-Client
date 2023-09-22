@@ -30,10 +30,15 @@ public class MenuImpl implements Menu {
             String selectNumOfMenu = readerFromServer.readLine();
             if (selectNumOfMenu.startsWith("!autho!")) {
                 System.out.println("You select authorization");
-                System.out.println("Print your nickname: ");
                 while (true) {
-                    String nicknameOfClient = readerFromClient.readLine();
-                    writeToServer.println("!auto!" + nicknameOfClient);
+                    System.out.println("print your mail");
+                    String loginOfClient = readerFromClient.readLine();
+                    writeToServer.println("!log!" + loginOfClient);
+                    writeToServer.flush();
+
+                    System.out.println("print your password");
+                    String passwordOfClient = readerFromClient.readLine();
+                    writeToServer.println("!pas!" + passwordOfClient);
                     writeToServer.flush();
 
                     String messageFromServer = readerFromServer.readLine();
