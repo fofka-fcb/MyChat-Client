@@ -50,20 +50,42 @@ public class MenuImpl implements Menu {
                 }
             } else if (selectNumOfMenu.startsWith("!reg!")) {
                 System.out.println("You select registration");
-                System.out.println("Print your nickname: ");
                 while (true) {
-                    String nicknameOfClient = readerFromClient.readLine();
-                    writeToServer.println("!reg!" + nicknameOfClient);
+                    System.out.println("Print your login(email): ");
+                    String loginOfClient = readerFromClient.readLine();
+                    writeToServer.println(loginOfClient);
                     writeToServer.flush();
 
                     String messageFromServer = readerFromServer.readLine();
                     System.out.println(messageFromServer);
 
-                    if (!messageFromServer.startsWith("Reg is not accepted")) {
+                    if (!messageFromServer.startsWith("Email already exists")) {
                         break;
                     }
                 }
+
+                System.out.println("Print your password");
+                String passwordOfClient = readerFromClient.readLine();
+                writeToServer.println(passwordOfClient);
+                writeToServer.flush();
+
+                while (true) {
+                    System.out.println("print your nickname");
+                    String nicknameOfClient = readerFromClient.readLine();
+                    writeToServer.println(nicknameOfClient);
+                    writeToServer.flush();
+
+                    String messageFromServer = readerFromServer.readLine();
+                    System.out.println(messageFromServer);
+
+                    if (!messageFromServer.startsWith("Nickname already exists")) {
+                        break;
+                    }
+                }
+                String messageFromServer = readerFromServer.readLine();
+                System.out.println(messageFromServer);
             }
+
             String chatMessage = readerFromServer.readLine();
             if (chatMessage.startsWith("!chat!")) {
                 break;

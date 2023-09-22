@@ -19,6 +19,7 @@ public class ChatImpl implements Chat {
 
         new Thread(new WriteMessage(socket)).start();
 
+        System.out.println("CHAT");
         System.out.println("print your message: ");
         String exit = "!Exit";
         while (true) {
