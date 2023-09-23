@@ -33,12 +33,12 @@ public class MenuImpl implements Menu {
                 while (true) {
                     System.out.println("print your mail");
                     String loginOfClient = readerFromClient.readLine();
-                    writeToServer.println("!log!" + loginOfClient);
+                    writeToServer.println(loginOfClient);
                     writeToServer.flush();
 
                     System.out.println("print your password");
                     String passwordOfClient = readerFromClient.readLine();
-                    writeToServer.println("!pas!" + passwordOfClient);
+                    writeToServer.println(passwordOfClient);
                     writeToServer.flush();
 
                     String messageFromServer = readerFromServer.readLine();
