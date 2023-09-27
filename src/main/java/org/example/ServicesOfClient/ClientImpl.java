@@ -17,11 +17,13 @@ public class ClientImpl implements Client {
         if (socket.isConnected()) {
             System.out.println("connection to server is done");
 
-            Menu menu = new MenuImpl(socket);
-            menu.startMenu();
+            while (true) {
+                Menu menu = new MenuImpl(socket);
+                menu.startMenu();
 
-            Chat chat = new ChatImpl(socket);
-            chat.startChat();
+                Chat chat = new ChatImpl(socket);
+                chat.startChat();
+            }
         }
     }
 }

@@ -21,15 +21,15 @@ public class ChatImpl implements Chat {
 
         System.out.println("CHAT");
         System.out.println("print your message: ");
-        String exit = "!Exit";
         while (true) {
             String messageToServer = readerFromClient.readLine();
-            if (messageToServer.equals(exit)) {
-                socket.close();
-                break;
-            }
+
             writeToServer.println(messageToServer);
             writeToServer.flush();
+
+            if (messageToServer.startsWith("!Exit")) {
+                break;
+            }
         }
     }
 }

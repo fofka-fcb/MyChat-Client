@@ -17,8 +17,12 @@ public class WriteMessage implements Runnable {
 
         BufferedReader readerFromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-        while (true) {
-            System.out.println(readerFromServer.readLine());
+        String messageFromClient;
+        while ((messageFromClient = readerFromServer.readLine()) != null) {
+            if (messageFromClient.startsWith("!Exit")) {
+                break;
+            }
+            System.out.println(messageFromClient);
         }
     }
 }
